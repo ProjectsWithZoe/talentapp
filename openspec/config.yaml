@@ -1,0 +1,44 @@
+schema: spec-driven
+
+context: |
+  # hirecheck.io — Job Application Strategist SaaS
+
+  ## Product
+  AI-powered resume analysis tool for tech job seekers (Software Engineers, DevOps,
+  Data Analysts, Product Engineers) in the US, UK, Canada, and Australia.
+  Users upload their resume + paste a job description and receive a structured analysis.
+
+  ## Business Model
+  - Free tier: 1 analysis per account, no optimizedBullets
+  - Lifetime tier: £99 one-time, unlimited analyses + optimizedBullets
+  - Stripe Checkout (one-time payment, no subscription for MVP)
+
+  ## Tech Stack
+  - Next.js 15 App Router + TypeScript + Tailwind CSS
+  - better-auth (Google OAuth + email/password, Drizzle adapter)
+  - Drizzle ORM + Neon Postgres (@neondatabase/serverless)
+  - Vercel AI SDK (streamText + Output.object) with @ai-sdk/anthropic
+  - Claude claude-sonnet-4-5 as analysis engine
+  - Stripe (one-time checkout + webhook)
+  - @vercel/og (shareable result card images)
+  - next-mdx-remote (MDX blog at /blog)
+  - mammoth (browser-side .docx parsing)
+  - unpdf (server-side .pdf parsing)
+  - zustand (cross-page analysis state)
+  - shadcn/ui components
+
+  ## Key Decisions
+  - Reports are stateless: never stored in DB, generated on demand
+  - Auth uses modal (no page redirect) to preserve form state on /analyze
+  - freeReportUsed set to true only on successful stream completion
+  - optimizedBullets only populated for lifetime users
+  - atsScore = numeric (0-100, keyword/format match)
+  - recruiterFit = qualitative enum
+
+  ## Conventions
+  - All server components use async/await for data fetching
+  - All client components have "use client" at the top
+  - API routes return NextResponse.json() with explicit status codes
+  - shadcn/ui components live in src/components/ui/
+  - No comments unless the WHY is non-obvious
+  - Tailwind for all styling

@@ -1,0 +1,51 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://hirecheck.io"),
+  title: {
+    default: "hirecheck — AI Resume Analyser for Tech Job Seekers",
+    template: "%s | hirecheck",
+  },
+  description:
+    "Know your chances before you apply. hirecheck analyses your resume against any job description — ATS score, recruiter fit, missing skills, and actionable fixes. Free for tech job seekers in the UK, US, Canada, and Australia.",
+  keywords: [
+    "ATS resume checker",
+    "resume analyser for software engineers",
+    "tech resume ATS score",
+    "why is my resume getting rejected",
+    "resume match score UK",
+    "ATS keywords for developers",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    alternateLocale: ["en_US", "en_AU", "en_CA"],
+    siteName: "hirecheck",
+    images: [{ url: "/og-default.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@hirecheckio",
+  },
+  robots: { index: true, follow: true },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
+      </body>
+    </html>
+  );
+}
