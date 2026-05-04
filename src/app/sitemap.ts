@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/mdx";
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL ?? "https://hirecheck.io";
+const BASE = process.env.NEXT_PUBLIC_APP_URL ?? "https://talentapp.co.uk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();

@@ -1,6 +1,6 @@
 ## Why
 
-Tech job seekers in the US, UK, Canada, and Australia routinely apply to roles without knowing whether their resume will survive ATS screening or resonate with a recruiter — resulting in application black holes. hirecheck.io solves this by using Claude as a simulated senior recruiter and ATS system to give instant, actionable analysis before candidates invest time applying.
+Tech job seekers in the US, UK, Canada, and Australia routinely apply to roles without knowing whether their resume will survive ATS screening or resonate with a recruiter — resulting in application black holes. TalentApp solves this by using Claude as a simulated senior recruiter and ATS system to give instant, actionable analysis before candidates invest time applying.
 
 ## What Changes
 

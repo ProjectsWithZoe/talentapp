@@ -45,8 +45,8 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.date,
     publisher: {
       "@type": "Organization",
-      name: "hirecheck",
-      url: "https://hirecheck.io",
+      name: "TalentApp",
+      url: "https://TalentApp.co.uk",
     },
   };
 

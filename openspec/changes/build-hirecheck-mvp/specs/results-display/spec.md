@@ -48,7 +48,7 @@ Users SHALL be able to download their analysis results as a PDF from the results
 
 #### Scenario: Download button click
 - **WHEN** the user clicks "Download Report"
-- **THEN** a PDF is generated client-side and downloaded with filename `hirecheck-report.pdf`
+- **THEN** a PDF is generated client-side and downloaded with filename `TalentApp-report.pdf`
 
 ---
 
@@ -57,7 +57,7 @@ The `/api/og` route SHALL generate a branded PNG image using `@vercel/og` from q
 
 #### Scenario: OG image generation
 - **WHEN** `/api/og?score=87&fit=Likely+to+shortlist&role=Software+Engineer` is requested
-- **THEN** a 1200×630 PNG is returned with hirecheck.io branding, the score, fit label, and role
+- **THEN** a 1200×630 PNG is returned with TalentApp.co.uk branding, the score, fit label, and role
 
 #### Scenario: Share button
 - **WHEN** the user clicks "Share Results"

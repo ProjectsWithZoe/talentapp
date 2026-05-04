@@ -45,7 +45,7 @@ export async function generatePDF(result: AnalysisResult) {
   doc.setFontSize(16);
   doc.setFont("helvetica", "bold");
   doc.setTextColor("#ffffff");
-  doc.text("hirecheck.io — Resume Analysis Report", margin, 14);
+  doc.text("TalentApp.co.uk — Resume Analysis Report", margin, 14);
   y = 32;
 
   // Scores
@@ -87,5 +87,5 @@ export async function generatePDF(result: AnalysisResult) {
     result.optimizedBullets.forEach((b) => addBullet(b));
   }
 
-  doc.save("hirecheck-report.pdf");
+  doc.save("Talentapp-report.pdf");
 }

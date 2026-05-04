@@ -29,7 +29,7 @@
 - [x] 4.3 Add pricing section with Free tier (1 analysis) and Lifetime tier (£99) cards and CTAs
 - [x] 4.4 Add at least one social proof element (example result card or testimonial placeholder)
 - [x] 4.5 Add SEO metadata to `src/app/layout.tsx`: `<title>`, `<meta name="description">`, Open Graph tags with long-tail tech job seeker keywords
-- [x] 4.6 Create `<Header>` and `<Footer>` layout components with hirecheck.io branding and navigation
+- [x] 4.6 Create `<Header>` and `<Footer>` layout components with TalentApp.io branding and navigation
 
 ## 5. File Upload and Parsing
 
@@ -64,8 +64,8 @@
 
 ## 9. PDF Download and Sharing
 
-- [x] 9.1 Add client-side PDF generation (`src/lib/generate-pdf.ts` with jspdf); "Download Report" button triggers download as `hirecheck-report.pdf`
-- [x] 9.2 Create `/api/og` route (`src/app/api/og/route.tsx`) using `next/og` to generate a 1200×630 PNG with hirecheck.io branding, `score`, `fit`, and `role` query params
+- [x] 9.1 Add client-side PDF generation (`src/lib/generate-pdf.ts` with jspdf); "Download Report" button triggers download as `TalentApp-report.pdf`
+- [x] 9.2 Create `/api/og` route (`src/app/api/og/route.tsx`) using `next/og` to generate a 1200×630 PNG with TalentApp.io branding, `score`, `fit`, and `role` query params
 - [x] 9.3 OG meta tags handled by results page dynamic metadata
 - [x] 9.4 Add "Share Results" button: copies URL to clipboard on desktop; triggers Web Share API on mobile
 
@@ -92,5 +92,5 @@
 - [x] 12.2 Add `<link rel="canonical">` to all pages (via `metadataBase` in layout.tsx)
 - [ ] 12.3 Audit all pages for mobile responsiveness (results page, analyze form, landing page) ⚠️ MANUAL STEP
 - [x] 12.4 Add rate limiting to `/api/analyze` (5 requests/min per IP via middleware)
-- [ ] 12.5 Configure Vercel project, link to hirecheck.io domain, and set all production environment variables ⚠️ MANUAL STEP
+- [ ] 12.5 Configure Vercel project, link to TalentApp.io domain, and set all production environment variables ⚠️ MANUAL STEP
 - [ ] 12.6 Run end-to-end test of full flow: sign up → free analysis → upgrade → lifetime analysis with optimizedBullets → PDF download → share card ⚠️ MANUAL STEP

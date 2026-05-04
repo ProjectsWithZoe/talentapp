@@ -1,6 +1,6 @@
 ## Context
 
-hirecheck.io is a greenfield Next.js App Router SaaS. There is no existing application code. The product allows tech job seekers to upload their resume and a job description and receive a structured AI analysis (ATS score, recruiter fit, missing skills, rejection risks, recruiter perception, fixes, and optional optimized bullet points).
+TalentApp.co.uk is a greenfield Next.js App Router SaaS. There is no existing application code. The product allows tech job seekers to upload their resume and a job description and receive a structured AI analysis (ATS score, recruiter fit, missing skills, rejection risks, recruiter perception, fixes, and optional optimized bullet points).
 
 The architecture must be stateless with respect to report content — no analysis data is persisted. User identity and entitlement (tier + free report usage) are persisted in Neon Postgres via better-auth.
 

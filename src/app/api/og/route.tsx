@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
       >
         {/* Header bar */}
         <div style={{ background: "#2563eb", padding: "28px 48px", display: "flex", alignItems: "center" }}>
-          <span style={{ color: "#ffffff", fontSize: "28px", fontWeight: "bold" }}>hirecheck.io</span>
+          <span style={{ color: "#ffffff", fontSize: "28px", fontWeight: "bold" }}>TalentApp.co.uk</span>
           <span style={{ color: "#93c5fd", fontSize: "18px", marginLeft: "16px" }}>Resume Analysis</span>
         </div>
 
@@ -65,7 +65,7 @@ export async function GET(req: NextRequest) {
         {/* Footer */}
         <div style={{ padding: "20px 48px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ color: "#6b7280", fontSize: "16px" }}>Know your chances before you apply</span>
-          <span style={{ color: "#2563eb", fontSize: "16px", fontWeight: "600" }}>hirecheck.io</span>
+          <span style={{ color: "#2563eb", fontSize: "16px", fontWeight: "600" }}>talentapp.co.uk</span>
         </div>
       </div>
     ),

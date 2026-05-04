@@ -65,7 +65,7 @@ export default function ResultsPage() {
     if (!result) return;
     const url = `${window.location.origin}/api/og?score=${result.atsScore}&fit=${encodeURIComponent(result.recruiterFit)}`;
     if (navigator.share) {
-      await navigator.share({ title: "My hirecheck analysis", url });
+      await navigator.share({ title: "My TalentApp analysis", url });
     } else {
       await navigator.clipboard.writeText(url);
       alert("Link copied to clipboard!");

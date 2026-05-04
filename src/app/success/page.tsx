@@ -4,7 +4,7 @@ import { CheckCircle, ArrowRight, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Welcome to Lifetime — hirecheck",
+  title: "Welcome to Lifetime — TalentApp",
 };
 
 export default function SuccessPage() {
@@ -31,16 +31,16 @@ export default function SuccessPage() {
         </Button>
 
         <Button variant="outline" size="lg" className="w-full gap-2" asChild>
-          <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://hirecheck.io")}`} target="_blank" rel="noopener noreferrer">
+          <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://TalentApp.co.uk")}`} target="_blank" rel="noopener noreferrer">
             <Share2 className="h-4 w-4" />
-            Share hirecheck with a colleague
+            Share TalentApp with a colleague
           </Link>
         </Button>
       </div>
 
       <p className="mt-8 text-sm text-muted-foreground">
         Confirmation sent to your email. Questions?{" "}
-        <a href="mailto:hello@hirecheck.io" className="underline underline-offset-4">hello@hirecheck.io</a>
+        <a href="mailto:hello@talentapp.co.uk" className="underline underline-offset-4">hello@talentapp.co.uk</a>
       </p>
     </div>
   );

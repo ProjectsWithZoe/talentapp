@@ -6,13 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "hirecheck — Know Your Chances Before You Apply",
+  title: "TalentApp — Know Your Chances Before You Apply",
   description:
     "AI resume analysis for software engineers, DevOps, and data professionals. Get your ATS score, recruiter fit rating, missing skills, and 5 actionable fixes — free.",
   openGraph: {
-    title: "hirecheck — AI Resume Analyser for Tech Job Seekers",
+    title: "TalentApp — AI Resume Analyser for Tech Job Seekers",
     description:
-      "Stop wondering why your resume gets no replies. hirecheck tells you exactly what's wrong and how to fix it.",
+      "Stop wondering why your resume gets no replies. TalentApp tells you exactly what's wrong and how to fix it.",
   },
 };
 
@@ -83,7 +83,7 @@ export default function HomePage() {
             <span className="text-primary">before you apply</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Paste your resume and job description. hirecheck tells you your ATS score, recruiter fit, what&apos;s missing, what&apos;s hurting you, and exactly how to fix it.
+            Paste your resume and job description. TalentApp tells you your ATS score, recruiter fit, what&apos;s missing, what&apos;s hurting you, and exactly how to fix it.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button asChild size="lg" className="gap-2 text-base">
