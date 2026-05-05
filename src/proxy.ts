@@ -17,7 +17,7 @@ function rateLimit(ip: string, limit: number, windowMs: number): boolean {
   return true;
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   if (req.nextUrl.pathname === "/api/analyze") {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     const allowed = rateLimit(ip, 5, 60_000); // 5 req/min per IP
