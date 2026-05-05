@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Mail } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn, signUp } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 interface AuthModalProps {
   open: boolean;
@@ -20,121 +20,107 @@ interface AuthModalProps {
   onSuccess?: () => void;
 }
 
+type State = "idle" | "loading" | "sent" | "error";
+
 export function AuthModal({ open, onOpenChange, onSuccess }: AuthModalProps) {
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [state, setState] = useState<State>("idle");
   const [error, setError] = useState("");
 
-  async function handleEmailSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
+  async function sendLink(emailToSend: string) {
+    setState("loading");
     setError("");
 
-    try {
-      if (mode === "signin") {
-        const result = await signIn.email({ email, password });
-        if (result.error) {
-          setError(result.error.message ?? "Invalid credentials");
-        } else {
-          onSuccess?.();
-          onOpenChange(false);
-        }
-      } else {
-        const result = await signUp.email({ email, password, name });
-        if (result.error) {
-          setError(result.error.message ?? "Sign up failed");
-        } else {
-          onSuccess?.();
-          onOpenChange(false);
-        }
-      }
-    } finally {
-      setLoading(false);
+    const callbackURL = typeof window !== "undefined" ? window.location.href : "/";
+    const result = await authClient.signIn.magicLink({ email: emailToSend, callbackURL });
+
+    if (result.error) {
+      setError(result.error.message ?? "Failed to send link. Please try again.");
+      setState("error");
+    } else {
+      setState("sent");
     }
   }
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    await sendLink(email);
+  }
+
+  function handleOpenChange(next: boolean) {
+    if (!next) {
+      setEmail("");
+      setState("idle");
+      setError("");
+    }
+    onOpenChange(next);
+  }
+
+  if (state === "sent") {
+    return (
+      <Dialog open={open} onOpenChange={handleOpenChange}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Check your inbox</DialogTitle>
+            <DialogDescription>
+              We sent a sign-in link to <strong>{email}</strong>. Click it to continue — it expires in 15 minutes.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 pt-2">
+            <p className="text-sm text-muted-foreground">
+              Can&apos;t find it? Check your spam folder.
+            </p>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => sendLink(email)}
+            >
+              Resend link
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{mode === "signin" ? "Sign in to continue" : "Create your account"}</DialogTitle>
+          <DialogTitle>Sign in to continue</DialogTitle>
           <DialogDescription>
-            {mode === "signin"
-              ? "Sign in to use your free analysis or access your lifetime account."
-              : "Create a free account to get your first resume analysis."}
+            Enter your email and we&apos;ll send you a sign-in link — no password needed.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 pt-2">
-          <form onSubmit={handleEmailSubmit} className="space-y-3">
-            {mode === "signup" && (
-              <div className="space-y-1">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Jane Smith"
-                  required
-                  disabled={loading}
-                />
-              </div>
-            )}
-            <div className="space-y-1">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="jane@example.com"
-                required
-                disabled={loading}
-              />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                disabled={loading}
-                minLength={8}
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-4 pt-2">
+          <div className="space-y-1">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="jane@example.com"
+              required
+              disabled={state === "loading"}
+              autoFocus
+            />
+          </div>
 
-            {error && <p className="text-sm text-destructive">{error}</p>}
+          {state === "error" && (
+            <p className="text-sm text-destructive">{error}</p>
+          )}
 
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === "signin" ? "Sign in" : "Create account"}
-            </Button>
-          </form>
-
-          <p className="text-center text-sm text-muted-foreground">
-            {mode === "signin" ? (
-              <>
-                No account?{" "}
-                <button onClick={() => setMode("signup")} className="text-primary underline underline-offset-4">
-                  Sign up free
-                </button>
-              </>
+          <Button type="submit" className="w-full gap-2" disabled={state === "loading"}>
+            {state === "loading" ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <>
-                Already have an account?{" "}
-                <button onClick={() => setMode("signin")} className="text-primary underline underline-offset-4">
-                  Sign in
-                </button>
-              </>
+              <Mail className="h-4 w-4" />
             )}
-          </p>
-        </div>
+            {state === "loading" ? "Sending…" : "Send sign-in link"}
+          </Button>
+        </form>
       </DialogContent>
     </Dialog>
   );

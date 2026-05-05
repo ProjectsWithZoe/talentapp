@@ -85,6 +85,7 @@ ANTHROPIC_API_KEY        # sk-ant-*
 STRIPE_SECRET_KEY        # sk_*
 STRIPE_WEBHOOK_SECRET    # whsec_*
 STRIPE_LIFETIME_PRICE_ID # price_*
+RESEND_API_KEY           # re_* — magic link email delivery
 NEXT_PUBLIC_APP_URL      # Client-visible app URL
 ```
 
