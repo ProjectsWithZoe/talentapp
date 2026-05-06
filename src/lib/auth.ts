@@ -22,7 +22,7 @@ export const auth = betterAuth({
     magicLink({
       sendMagicLink: async ({ email, url }) => {
         await resend.emails.send({
-          from: "TalentApp <noreply@talentapp.co.uk>",
+          from: "TalentApp Admin<admin@zoebuilds.co.uk>",
           to: email,
           subject: "Your sign-in link for TalentApp",
           html: `<p>Click the link below to sign in to TalentApp. This link expires in 15 minutes.</p><p><a href="${url}">Sign in to TalentApp</a></p><p>If you didn't request this, you can safely ignore this email.</p>`,
