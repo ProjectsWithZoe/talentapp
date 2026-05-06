@@ -136,7 +136,7 @@ export default function AnalyzePage() {
             {error === "entitlement_exhausted" ? (
               <span>
                 You&apos;ve used your free analysis.{" "}
-                <a href="/pricing" className="font-semibold underline underline-offset-2">
+                <a href="/#pricing" className="font-semibold underline underline-offset-2">
                   Upgrade to lifetime access
                 </a>{" "}
                 for unlimited analyses.

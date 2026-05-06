@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    const email = session.customer_email;
+    const email = session.customer_details?.email ?? session.customer_email;
 
     if (!email) {
       return NextResponse.json({ received: true });
@@ -31,11 +31,14 @@ export async function POST(req: NextRequest) {
 
     const result = await db
       .update(user)
-      .set({ tier: "lifetime" })
+      .set({ tier: "lifetime", updatedAt: new Date() })
       .where(eq(user.email, email));
 
     if (result.rowCount === 0) {
-      console.error(`Stripe webhook: no user found for email ${email}`);
+      // User doesn't exist yet — the /success page handles creation.
+      // This is expected when someone pays via the unauthenticated Payment Link
+      // before their account is created. Log and move on; the success page is primary.
+      console.log(`Stripe webhook: no existing user for email ${email} — skipping (success page handles creation)`);
     }
   }
 

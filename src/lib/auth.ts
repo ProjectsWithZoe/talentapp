@@ -22,10 +22,29 @@ export const auth = betterAuth({
     magicLink({
       sendMagicLink: async ({ email, url }) => {
         await resend.emails.send({
-          from: "TalentApp Admin<admin@talentapp.co.uk>",
+          from: "TalentApp Admin <admin@talentapp.co.uk>",
           to: email,
-          subject: "Your sign-in link for TalentApp",
-          html: `<p>Click the link below to sign in to TalentApp. This link expires in 15 minutes.</p><p><a href="${url}">Sign in to TalentApp</a></p><p>If you didn't request this, you can safely ignore this email.</p>`,
+          subject: "Your TalentApp sign-in link",
+          html: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#111">
+  <h1 style="font-size:22px;margin-bottom:8px">Sign in to TalentApp</h1>
+  <p style="color:#555">Click the button below to sign in. This link expires in 15 minutes.</p>
+  <div style="margin:28px 0">
+    <a href="${url}" style="background:#000;color:#fff;text-decoration:none;padding:12px 24px;border-radius:6px;font-weight:600;display:inline-block">
+      Sign in to TalentApp →
+    </a>
+  </div>
+  <p style="font-size:12px;color:#999">
+    Or copy and paste this URL: <br>
+    <a href="${url}" style="color:#999;word-break:break-all">${url}</a>
+  </p>
+  <hr style="border:none;border-top:1px solid #eee;margin:24px 0">
+  <p style="font-size:12px;color:#999">If you didn't request this, you can safely ignore this email.</p>
+</body>
+</html>`,
         });
       },
     }),

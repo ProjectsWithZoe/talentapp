@@ -35,7 +35,7 @@ export function FreeWarningModal({ open, onConfirm, onCancel }: FreeWarningModal
               your results will be gone. Use the <em>Download Report</em> button on the results page before leaving.
             </p>
             <p>
-              To get unlimited analyses, upgrade to Lifetime for £99 — a one-time payment.
+              To get unlimited analyses, upgrade to Lifetime for £29.99 — a one-time payment.
             </p>
           </DialogDescription>
         </DialogHeader>
