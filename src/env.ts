@@ -10,6 +10,9 @@ const serverEnvSchema = z.object({
   STRIPE_LIFETIME_PRICE_ID: z.string().startsWith("price_"),
   RESEND_API_KEY: z.string().min(1),
   NEXT_PUBLIC_APP_URL: z.string().url(),
+  NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1),
+  NEXT_PUBLIC_SANITY_DATASET: z.string().min(1),
+  SANITY_API_TOKEN: z.string().min(1),
 });
 
 export const env = serverEnvSchema.parse(process.env);

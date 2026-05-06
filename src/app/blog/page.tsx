@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts } from "@/lib/sanity";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Blog — Resume tips for tech job seekers",
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
     "Guides on ATS systems, resume formats, and job search strategy for software engineers, DevOps, and data professionals in the UK, US, Canada, and Australia.",
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
 
   return (
     <div className="container mx-auto max-w-3xl px-4 py-12">
@@ -34,7 +36,7 @@ export default function BlogPage() {
                       {post.title}
                     </CardTitle>
                     <time className="text-xs text-muted-foreground shrink-0 mt-1">
-                      {new Date(post.date).toLocaleDateString("en-GB", {
+                      {new Date(post.publishedAt).toLocaleDateString("en-GB", {
                         day: "numeric", month: "short", year: "numeric",
                       })}
                     </time>
