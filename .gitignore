@@ -43,4 +43,5 @@ next-env.d.ts
 /openspec
 /tests
 /test-results
+playwright.config.ts
 
