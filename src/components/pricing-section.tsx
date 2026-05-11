@@ -79,7 +79,7 @@ export async function PricingSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full">
+              <Button asChild variant="secondary" className="w-full">
                 <Link href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK!}>Get lifetime access</Link>
               </Button>
             </CardFooter>
