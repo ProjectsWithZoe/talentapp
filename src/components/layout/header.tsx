@@ -16,6 +16,9 @@ export function Header() {
           <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Blog
           </Link>
+          <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Contact
+          </Link>
           <Button asChild size="sm">
             <Link href="/analyze">Check My Resume</Link>
           </Button>
