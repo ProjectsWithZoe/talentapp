@@ -1,4 +1,4 @@
-import { pgTable, text, boolean, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import { pgTable, text, boolean, timestamp, pgEnum, integer } from "drizzle-orm/pg-core";
 
 export const tierEnum = pgEnum("tier", ["free", "lifetime"]);
 
@@ -10,6 +10,7 @@ export const user = pgTable("user", {
   image: text("image"),
   tier: tierEnum("tier").notNull().default("free"),
   freeReportUsed: boolean("free_report_used").notNull().default(false),
+  credits: integer("credits").notNull().default(0),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

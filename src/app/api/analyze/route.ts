@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { anthropic } from "@ai-sdk/anthropic";
 import { generateObject } from "ai";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { user } from "@/db/schema";
@@ -34,7 +34,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  if (dbUser.tier === "free" && dbUser.freeReportUsed) {
+  const hasAccess =
+    dbUser.tier === "lifetime" ||
+    (dbUser.tier === "free" && !dbUser.freeReportUsed) ||
+    dbUser.credits > 0;
+
+  if (!hasAccess) {
     return NextResponse.json({ error: "entitlement_exhausted" }, { status: 403 });
   }
 
@@ -59,9 +64,13 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Commit freeReportUsed only after successful analysis
-  if (dbUser.tier === "free" && !dbUser.freeReportUsed) {
+  if (dbUser.tier === "free" && !dbUser.freeReportUsed && dbUser.credits === 0) {
     await db.update(user).set({ freeReportUsed: true }).where(eq(user.id, dbUser.id));
+  } else if (dbUser.credits > 0) {
+    await db
+      .update(user)
+      .set({ credits: sql`${user.credits} - 1`, updatedAt: new Date() })
+      .where(eq(user.id, dbUser.id));
   }
 
   return NextResponse.json(analysisObject);

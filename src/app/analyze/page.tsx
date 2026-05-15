@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { ResumeUpload } from "@/components/resume-upload";
 import { AuthModal } from "@/components/auth/auth-modal";
 import { FreeWarningModal } from "@/components/free-warning-modal";
+import { UpgradeModal } from "@/components/upgrade-modal";
 import { useSession } from "@/lib/auth-client";
 import { useAnalysisStore } from "@/store/analysis";
 import type { AnalysisResult } from "@/lib/analysis-schema";
@@ -22,6 +23,7 @@ export default function AnalyzePage() {
   const [jobDescription, setJobDescription] = useState("");
   const [authOpen, setAuthOpen] = useState(false);
   const [warnOpen, setWarnOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const canSubmit = resumeText.trim().length > 100 && jobDescription.trim().length > 50;
@@ -40,7 +42,7 @@ export default function AnalyzePage() {
       if (!res.ok) {
         const { error } = await res.json().catch(() => ({ error: "Analysis failed" }));
         if (res.status === 403) {
-          setError("entitlement_exhausted");
+          setUpgradeOpen(true);
         } else {
           throw new Error(error ?? "Analysis failed");
         }
@@ -133,17 +135,7 @@ export default function AnalyzePage() {
         {/* Error banner */}
         {error && (
           <div className="rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-            {error === "entitlement_exhausted" ? (
-              <span>
-                You&apos;ve used your free analysis.{" "}
-                <a href="/#pricing" className="font-semibold underline underline-offset-2">
-                  Upgrade to lifetime access
-                </a>{" "}
-                for unlimited analyses.
-              </span>
-            ) : (
-              error
-            )}
+              {error}
           </div>
         )}
 
@@ -188,6 +180,7 @@ export default function AnalyzePage() {
         }}
         onCancel={() => setWarnOpen(false)}
       />
+      <UpgradeModal open={upgradeOpen} onClose={() => setUpgradeOpen(false)} />
     </div>
   );
 }

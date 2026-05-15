@@ -63,6 +63,12 @@ export const auth = betterAuth({
         defaultValue: false,
         input: false,
       },
+      credits: {
+        type: "number",
+        required: false,
+        defaultValue: 0,
+        input: false,
+      },
     },
   },
   trustedOrigins: [env.NEXT_PUBLIC_APP_URL],

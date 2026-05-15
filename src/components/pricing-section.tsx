@@ -18,7 +18,7 @@ export async function PricingSection() {
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Simple pricing</h2>
           <p className="mt-4 text-muted-foreground">No subscription. No tricks.</p>
         </div>
-        <div className="mx-auto grid max-w-3xl gap-8 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-3">
           {/* Free */}
           <Card>
             <CardHeader>
@@ -45,6 +45,42 @@ export async function PricingSection() {
             <CardFooter>
               <Button asChild variant="outline" className="w-full">
                 <Link href="/analyze">Start free</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+
+          {/* Pay per analysis */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Pay as you go</CardTitle>
+              <div className="mt-2 flex items-baseline gap-2">
+                <span className="text-4xl font-bold">£5</span>
+                <span className="text-muted-foreground text-sm">per analysis</span>
+              </div>
+              <CardDescription>No commitment. Pay only when you need it.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm">
+                {["ATS score", "Recruiter fit rating", "Strong matches", "Missing skills", "Rejection risks", "Recruiter perception", "3–5 actionable fixes"].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+                <li className="flex items-center gap-2 text-muted-foreground">
+                  <XCircle className="h-4 w-4 shrink-0" />
+                  Optimised bullet points
+                </li>
+              </ul>
+            </CardContent>
+            <CardFooter className="flex flex-col gap-2">
+              <Button asChild variant="outline" className="w-full">
+                <a href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_1CREDIT}>Buy 1 analysis — £5</a>
+              </Button>
+              <Button asChild variant="secondary" className="w-full">
+                <a href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_3CREDITS}>
+                  Buy 3 analyses — £12 <span className="ml-1.5 text-xs opacity-75">(save 20%)</span>
+                </a>
               </Button>
             </CardFooter>
           </Card>
@@ -80,7 +116,7 @@ export async function PricingSection() {
             </CardContent>
             <CardFooter>
               <Button asChild variant="secondary" className="w-full">
-                <Link href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK!}>Get lifetime access</Link>
+                <Link href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_LIFETIME!}>Get lifetime access</Link>
               </Button>
             </CardFooter>
           </Card>
