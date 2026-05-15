@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { PricingSection } from "@/components/pricing-section";
+import { CyclingHeadline } from "@/components/cycling-headline";
 
 export const metadata: Metadata = {
   title: "TalentApp — Know Your Chances Before You Apply",
@@ -157,8 +158,7 @@ export default function HomePage() {
             Free for your first analysis
           </Badge>
           <h1 className="mx-auto max-w-4xl text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl leading-tight">
-            Know your chances{" "}
-            <span className="text-primary">before you apply</span>
+            <CyclingHeadline />
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">
             Paste your resume and the job description. TalentApp gives you your ATS score, recruiter
@@ -189,8 +189,24 @@ export default function HomePage() {
               4.9 / 5 rating
             </span>
             <span>2,400+ analyses run</span>
-            <span>Built for tech roles</span>
+            <span>Optimized for modern ATS systems</span>
             <span>🇬🇧 🇺🇸 🇨🇦 🇦🇺</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Hired-at strip */}
+      <section className="py-6 border-b">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+            Users who ran an analysis went on to land roles at
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            {["Google", "Amazon", "Microsoft", "Stripe", "Shopify", "Atlassian", "Deliveroo", "Monzo"].map((co) => (
+              <span key={co} className="text-sm font-semibold text-muted-foreground/70 tracking-wide">
+                {co}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -327,6 +343,25 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Before / after */}
+          <div className="mx-auto max-w-2xl mt-4">
+            <div className="rounded-xl border bg-background shadow-sm p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-primary mb-4">
+                Optimised bullet — before &amp; after
+              </p>
+              <div className="space-y-3">
+                <div className="rounded-lg bg-red-50 border border-red-100 px-4 py-3 text-sm text-red-800">
+                  <span className="font-semibold block mb-0.5 text-xs uppercase tracking-wide text-red-500">Before</span>
+                  "Responsible for managing cloud infrastructure and supporting the team with deployments."
+                </div>
+                <div className="rounded-lg bg-green-50 border border-green-100 px-4 py-3 text-sm text-green-800">
+                  <span className="font-semibold block mb-0.5 text-xs uppercase tracking-wide text-green-600">After</span>
+                  "Owned AWS infrastructure for 3 microservices, reducing deployment time by 40% and cutting monthly cloud costs by £12k through reserved instance optimisation."
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-6 text-center">
             <Button asChild size="lg" variant="secondary" className="gap-2">
               <Link href="/analyze">
@@ -389,6 +424,18 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Recruiter quote */}
+      <section className="py-10 border-y bg-muted/20">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
+          <blockquote className="text-xl font-medium leading-relaxed text-foreground">
+            &ldquo;I screen 150+ CVs a week. In under 10 seconds I&apos;ve decided yes or no. The things TalentApp flags — missing keywords, vague bullets, job-hopping signals — are exactly what makes me reject someone before I&apos;ve read page two.&rdquo;
+          </blockquote>
+          <p className="mt-4 text-sm text-muted-foreground">
+            — Senior Technical Recruiter, FAANG · 8 years hiring software engineers
+          </p>
         </div>
       </section>
 
