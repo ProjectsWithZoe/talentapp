@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,19 @@ export default function AnalyzePage() {
   const [warnOpen, setWarnOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  useEffect(() => {
+    const savedResume = sessionStorage.getItem("pendingResumeText");
+    const savedJD = sessionStorage.getItem("pendingJobDescription");
+    if (savedResume) {
+      setResumeText(savedResume);
+      sessionStorage.removeItem("pendingResumeText");
+    }
+    if (savedJD) {
+      setJobDescription(savedJD);
+      sessionStorage.removeItem("pendingJobDescription");
+    }
+  }, []);
 
   const canSubmit = resumeText.trim().length > 100 && jobDescription.trim().length > 50;
 
@@ -63,6 +76,8 @@ export default function AnalyzePage() {
     if (!canSubmit) return;
 
     if (!session) {
+      sessionStorage.setItem("pendingResumeText", resumeText);
+      sessionStorage.setItem("pendingJobDescription", jobDescription);
       setAuthOpen(true);
       return;
     }
@@ -158,7 +173,7 @@ export default function AnalyzePage() {
 
         {isAnalyzing && (
           <p className="text-center text-sm text-muted-foreground animate-pulse">
-            Claude is reviewing your application as a senior recruiter…
+            Reviewing your application ... This may take up to 15 seconds.
           </p>
         )}
       </div>
