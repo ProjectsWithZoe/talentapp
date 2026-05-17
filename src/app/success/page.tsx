@@ -113,8 +113,8 @@ function LifetimeSuccess({ signedIn: _ }: { signedIn: boolean }) {
       </div>
       <p className="mt-8 text-sm text-muted-foreground">
         Confirmation sent to your email. Questions?{" "}
-        <a href="mailto:hello@talentapp.co.uk" className="underline underline-offset-4">
-          hello@talentapp.co.uk
+        <a href="mailto:admin@zoebuilds.co.uk" className="underline underline-offset-4">
+          admin@zoebuilds.co.uk
         </a>
       </p>
     </div>
@@ -140,8 +140,8 @@ function CreditsSuccess({ credits }: { credits: number }) {
       </Button>
       <p className="mt-8 text-sm text-muted-foreground">
         Questions?{" "}
-        <a href="mailto:hello@talentapp.co.uk" className="underline underline-offset-4">
-          hello@talentapp.co.uk
+        <a href="mailto:admin@zoebuilds.co.uk" className="underline underline-offset-4">
+          admin@zoebuilds.co.uk
         </a>
       </p>
     </div>

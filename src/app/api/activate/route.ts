@@ -124,7 +124,7 @@ function confirmationEmailHtml(email: string, isSignedIn: boolean): string {
   <hr style="border:none;border-top:1px solid #eee;margin:24px 0">
   <p style="font-size:12px;color:#999">
     Questions? Reply to this email or write to
-    <a href="mailto:hello@talentapp.co.uk" style="color:#999">hello@talentapp.co.uk</a>.<br>
+    <a href="mailto:admin@zoebuilds.co.uk" style="color:#999">admin@zoebuilds.co.uk</a>.<br>
     TalentApp · ${email}
   </p>
 </body>

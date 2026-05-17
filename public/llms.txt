@@ -1,0 +1,42 @@
+# TalentApp
+
+> AI-powered resume analyser for tech job seekers. Paste your resume and a job description to get your ATS score, recruiter fit rating, missing skills, rejection risks, and actionable fixes — free for the first analysis, no account needed.
+
+TalentApp uses Claude (Anthropic) to simultaneously simulate an ATS system, senior recruiter, and hiring manager. It tells you exactly why your resume is being rejected and gives you specific, prioritised changes to fix it. Built for tech roles in the UK, US, Canada, and Australia.
+
+## Core tool
+
+- [Analyse your resume](https://talentapp.co.uk/analyze): Upload a PDF or DOCX (or paste as text) alongside a job description. Returns an ATS compatibility score (0–100), recruiter fit rating, strong matches, missing skills, rejection risks, plain-English recruiter perception, and 3–5 fixes ranked by impact. First analysis is free — no account, no credit card required.
+
+## What it analyses
+
+- **ATS score** (0–100): How well the resume matches the job's keywords and formatting requirements
+- **Recruiter fit**: Likely to shortlist / Competitive / Borderline / Unlikely
+- **Strong matches**: Skills and experience that genuinely stand out for the specific role
+- **Missing skills**: Keywords in the job description absent from the resume
+- **Rejection risks**: Patterns that trigger automatic filtering — gaps, red flags, vague bullets
+- **Actionable fixes**: Concrete changes ranked by impact, specific to the resume and job
+- **Optimised bullet points**: AI-rewritten bullets that pass ATS and read well to humans (Lifetime only)
+
+## Who it's for
+
+Anyone applying for jobs — whether you're a software engineer, nurse, teacher, marketer, or anything else. Particularly useful in the UK, US, Canada, and Australia where ATS filtering is standard practice.
+
+## Pricing
+
+- **Free**: One analysis, no account required
+- **1 analysis** ($5): Single pay-per-use credit
+- **3 analyses** ($12): Three-pack (save 20%)
+- **Lifetime** ($99, one-time): Unlimited analyses + optimised bullet points + all future features
+
+## Blog
+
+- [Blog](https://talentapp.co.uk/blog): Guides on ATS optimisation, resume writing for tech roles, and job search strategy
+
+## Key facts
+
+- Analysis takes 15–30 seconds
+- Supports PDF and DOCX uploads (up to 5 MB) or plain-text paste
+- Results are not stored server-side — users download a PDF report before leaving
+- Powered by Claude Sonnet (Anthropic)
+- Contact: [hello@talentapp.co.uk](mailto:hello@talentapp.co.uk)

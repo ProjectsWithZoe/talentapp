@@ -12,7 +12,7 @@ export function Footer() {
         <div className="flex gap-6 text-sm text-muted-foreground">
           <Link href="/blog" className="hover:text-foreground transition-colors">Blog</Link>
           <Link href="/analyze" className="hover:text-foreground transition-colors">Analyze</Link>
-          <a href="mailto:hello@talentapp.co.uk" className="hover:text-foreground transition-colors">Contact</a>
+          <a href="mailto:admin@zoebuilds.co.uk" className="hover:text-foreground transition-colors">Contact</a>
         </div>
         <p className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} talentapp.co.uk — AI analysis, not career advice.
