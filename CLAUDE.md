@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**TalentApp.co.uk** — AI-powered resume analyzer for tech job seekers. Users upload a resume + job description, and Claude returns an ATS score, recruiter fit rating, match/gap analysis, and improvement fixes. The first analysis is free with no account required (cookie-gated); subsequent analyses require sign-in. Lifetime users (£99 one-time via Stripe) get unlimited analyses plus `optimizedBullets`.
+**TalentApp.co.uk** — AI-powered resume analyzer for tech job seekers. Users upload a resume + job description, and Claude returns an ATS score, recruiter fit rating, match/gap analysis, and improvement fixes. The first analysis is free with no account required (cookie-gated); subsequent analyses require sign-in. Lifetime users ($99 one-time via Stripe) get unlimited analyses plus `optimizedBullets`.
 
 ## Commands
 

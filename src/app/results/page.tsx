@@ -234,7 +234,7 @@ export default function ResultsPage() {
                 <Lock className="h-5 w-5 text-muted-foreground" />
                 <p className="text-sm font-medium">Unlock with Lifetime access</p>
                 <Button asChild size="sm">
-                  <Link href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_LIFETIME!}>Get Lifetime — £29.99</Link>
+                  <Link href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_LIFETIME!}>Get Lifetime — $99.99</Link>
                 </Button>
               </div>
             </div>
@@ -248,10 +248,10 @@ export default function ResultsPage() {
           <CardContent className="pt-6 text-center">
             <p className="font-semibold mb-1">Want unlimited analyses + optimised bullet points?</p>
             <p className="text-sm text-muted-foreground mb-4">
-              One-time payment of £29.99 — no subscription, no expiry.
+              One-time payment of $99.99 — no subscription, no expiry.
             </p>
             <Button asChild>
-              <Link href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_LIFETIME!}>Get Lifetime — £29.99</Link>
+              <Link href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_LIFETIME!}>Get Lifetime — $99.99</Link>
             </Button>
           </CardContent>
         </Card>

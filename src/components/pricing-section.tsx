@@ -24,7 +24,7 @@ export async function PricingSection() {
             <CardHeader>
               <CardTitle>Free</CardTitle>
               <div className="mt-2">
-                <span className="text-4xl font-bold">£0</span>
+                <span className="text-4xl font-bold">$0</span>
               </div>
               <CardDescription>One full analysis, on us.</CardDescription>
             </CardHeader>
@@ -54,7 +54,7 @@ export async function PricingSection() {
             <CardHeader>
               <CardTitle>Pay as you go</CardTitle>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="text-4xl font-bold">£5</span>
+                <span className="text-4xl font-bold">$5</span>
                 <span className="text-muted-foreground text-sm">per analysis</span>
               </div>
               <CardDescription>No commitment. Pay only when you need it.</CardDescription>
@@ -75,11 +75,11 @@ export async function PricingSection() {
             </CardContent>
             <CardFooter className="flex flex-col gap-2">
               <Button asChild variant="outline" className="w-full">
-                <a href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_1CREDIT}>Buy 1 analysis — £5</a>
+                <a href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_1CREDIT}>Buy 1 analysis — $5</a>
               </Button>
               <Button asChild variant="secondary" className="w-full">
                 <a href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_3CREDITS}>
-                  Buy 3 analyses — £12 <span className="ml-1.5 text-xs opacity-75">(save 20%)</span>
+                  Buy 3 analyses — $12 <span className="ml-1.5 text-xs opacity-75">(save 20%)</span>
                 </a>
               </Button>
             </CardFooter>
@@ -93,7 +93,7 @@ export async function PricingSection() {
             <CardHeader>
               <CardTitle>Lifetime</CardTitle>
               <div className="mt-2">
-                <span className="text-4xl font-bold">£29.99</span>
+                <span className="text-4xl font-bold">$99.99</span>
                 <span className="text-muted-foreground ml-1 text-sm">one-time</span>
               </div>
               <CardDescription>Unlimited analyses, forever.</CardDescription>

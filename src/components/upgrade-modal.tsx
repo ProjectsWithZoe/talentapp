@@ -39,7 +39,7 @@ export function UpgradeModal({ open, onClose }: UpgradeModalProps) {
               <div className="flex items-start gap-3">
                 <Zap className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-semibold">1 analysis — £5</p>
+                  <p className="font-semibold">1 analysis — $5</p>
                   <p className="text-sm text-muted-foreground mt-0.5">
                     Pay once, analyse one CV right now.
                   </p>
@@ -54,7 +54,7 @@ export function UpgradeModal({ open, onClose }: UpgradeModalProps) {
                 <Zap className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <p className="font-semibold">3 analyses — £12</p>
+                    <p className="font-semibold">3 analyses — $12</p>
                     <Badge variant="secondary" className="text-xs">Save 20%</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground mt-0.5">
@@ -70,7 +70,7 @@ export function UpgradeModal({ open, onClose }: UpgradeModalProps) {
               <div className="flex items-start gap-3">
                 <Infinity className="h-5 w-5 text-foreground mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-semibold">Lifetime access — £29.99</p>
+                  <p className="font-semibold">Lifetime access — $99.99</p>
                   <p className="text-sm text-muted-foreground mt-0.5">
                     Unlimited analyses + optimised bullet points, forever.
                   </p>
