@@ -15,9 +15,10 @@ interface FreeWarningModalProps {
   open: boolean;
   onConfirm: () => void;
   onCancel: () => void;
+  isGuest?: boolean;
 }
 
-export function FreeWarningModal({ open, onConfirm, onCancel }: FreeWarningModalProps) {
+export function FreeWarningModal({ open, onConfirm, onCancel, isGuest }: FreeWarningModalProps) {
   return (
     <Dialog open={open} onOpenChange={(o) => { if (!o) onCancel(); }}>
       <DialogContent className="sm:max-w-md">
@@ -28,7 +29,10 @@ export function FreeWarningModal({ open, onConfirm, onCancel }: FreeWarningModal
           </div>
           <DialogDescription className="space-y-2 pt-2">
             <p>
-              Your free account includes <strong>1 analysis</strong>. Once submitted, this will be used.
+              {isGuest
+                ? <>TalentApp is free for your <strong>first analysis</strong> — no account needed. Once submitted, this will be used.</>
+                : <>Your free account includes <strong>1 analysis</strong>. Once submitted, this will be used.</>
+              }
             </p>
             <p>
               <strong>Important:</strong> Reports are not saved. If you close this tab before downloading,{" "}

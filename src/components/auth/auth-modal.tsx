@@ -18,11 +18,13 @@ interface AuthModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSuccess?: () => void;
+  title?: string;
+  description?: string;
 }
 
 type State = "idle" | "loading" | "sent" | "error";
 
-export function AuthModal({ open, onOpenChange, onSuccess }: AuthModalProps) {
+export function AuthModal({ open, onOpenChange, onSuccess, title, description }: AuthModalProps) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<State>("idle");
   const [error, setError] = useState("");
@@ -87,9 +89,9 @@ export function AuthModal({ open, onOpenChange, onSuccess }: AuthModalProps) {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Sign in to continue</DialogTitle>
+          <DialogTitle>{title ?? "Sign in to continue"}</DialogTitle>
           <DialogDescription>
-            Enter your email and we&apos;ll send you a sign-in link — no password needed.
+            {description ?? "Enter your email and we’ll send you a sign-in link — no password needed."}
           </DialogDescription>
         </DialogHeader>
 

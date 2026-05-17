@@ -55,7 +55,14 @@ export default function AnalyzePage() {
       if (!res.ok) {
         const { error } = await res.json().catch(() => ({ error: "Analysis failed" }));
         if (res.status === 403) {
-          setUpgradeOpen(true);
+          if (!session) {
+            // Guest used their free analysis — prompt sign-in to continue
+            sessionStorage.setItem("pendingResumeText", resumeText);
+            sessionStorage.setItem("pendingJobDescription", jobDescription);
+            setAuthOpen(true);
+          } else {
+            setUpgradeOpen(true);
+          }
         } else {
           throw new Error(error ?? "Analysis failed");
         }
@@ -76,9 +83,8 @@ export default function AnalyzePage() {
     if (!canSubmit) return;
 
     if (!session) {
-      sessionStorage.setItem("pendingResumeText", resumeText);
-      sessionStorage.setItem("pendingJobDescription", jobDescription);
-      setAuthOpen(true);
+      // Guest: show warning then run analysis — no sign-in needed for the first one
+      setWarnOpen(true);
       return;
     }
 
@@ -181,6 +187,8 @@ export default function AnalyzePage() {
       <AuthModal
         open={authOpen}
         onOpenChange={setAuthOpen}
+        title="Sign in to run more analyses"
+        description="You've used your free analysis. Sign in with your email to continue — no password needed."
         onSuccess={() => {
           setAuthOpen(false);
           handleSubmit();
@@ -189,6 +197,7 @@ export default function AnalyzePage() {
 
       <FreeWarningModal
         open={warnOpen}
+        isGuest={!session}
         onConfirm={() => {
           setWarnOpen(false);
           runAnalysis();

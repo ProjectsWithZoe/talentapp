@@ -10,6 +10,8 @@ import { SYSTEM_PROMPT, buildAnalysisPrompt } from "@/lib/prompts";
 
 export const maxDuration = 60;
 
+const GUEST_COOKIE = "talent_free_used";
+
 async function runAnalysis(resumeText: string, jobDescription: string, includeOptimizedBullets: boolean) {
   const { object } = await generateObject({
     model: anthropic("claude-sonnet-4-6"),
@@ -22,10 +24,42 @@ async function runAnalysis(resumeText: string, jobDescription: string, includeOp
 
 export async function POST(req: NextRequest) {
   const session = await auth.api.getSession({ headers: req.headers });
+
+  // Guest path: no session required for the first free analysis
   if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (req.cookies.get(GUEST_COOKIE)) {
+      return NextResponse.json({ error: "entitlement_exhausted" }, { status: 403 });
+    }
+
+    const body = await req.json();
+    const { resumeText, jobDescription } = body;
+
+    if (!resumeText || !jobDescription) {
+      return NextResponse.json({ error: "resumeText and jobDescription are required" }, { status: 400 });
+    }
+
+    let analysisObject;
+    try {
+      analysisObject = await runAnalysis(resumeText, jobDescription, false);
+    } catch {
+      try {
+        analysisObject = await runAnalysis(resumeText, jobDescription, false);
+      } catch {
+        return NextResponse.json({ error: "analysis_failed" }, { status: 500 });
+      }
+    }
+
+    const response = NextResponse.json(analysisObject);
+    response.cookies.set(GUEST_COOKIE, "1", {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 365,
+      path: "/",
+    });
+    return response;
   }
 
+  // Authenticated path
   const dbUser = await db.query.user.findFirst({
     where: eq(user.id, session.user.id),
   });
